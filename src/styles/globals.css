@@ -1,0 +1,246 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource/inter/latin-400.css";
+@import "@fontsource/inter/latin-500.css";
+@import "@fontsource/inter/latin-600.css";
+@import "@fontsource/inter/latin-700.css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  color-scheme: light;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  --radius: 0.75rem;
+  --background: #ffffff;
+  --foreground: #0f172a;
+  --card: #f8fafc;
+  --card-foreground: #0f172a;
+  --popover: #ffffff;
+  --popover-foreground: #0f172a;
+  --primary: #6366f1;
+  --primary-foreground: #ffffff;
+  --secondary: #f8fafc;
+  --secondary-foreground: #0f172a;
+  --muted: #f8fafc;
+  --muted-foreground: #64748b;
+  --accent: #f8fafc;
+  --accent-foreground: #0f172a;
+  --highlight: #f43f5e;
+  --destructive: #f43f5e;
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: #6366f1;
+  --chart-1: #6366f1;
+  --chart-2: #f43f5e;
+  --chart-3: #64748b;
+  --chart-4: #0f172a;
+  --chart-5: #e2e8f0;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #0f172a;
+  --sidebar-primary: #6366f1;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f8fafc;
+  --sidebar-accent-foreground: #0f172a;
+  --sidebar-border: #e2e8f0;
+  --sidebar-ring: #6366f1;
+}
+
+
+.dark {
+  color-scheme: dark;
+  --background: #09090b;           /* zinc-950 */
+  --foreground: #f4f4f5;            /* zinc-100 */
+  --card: #18181b;                  /* zinc-900 */
+  --card-foreground: #f4f4f5;
+  --popover: #18181b;
+  --popover-foreground: #f4f4f5;
+
+  --primary: #6366f1;
+  --primary-foreground: #ffffff;
+
+  --secondary: #27272a;             /* zinc-800 */
+  --secondary-foreground: #f4f4f5;
+  --muted: #27272a;
+  --muted-foreground: #a1a1aa;      /* zinc-400 */
+
+  --accent: #27272a;                /* zinc-800 */
+  --accent-foreground: #fafafa;     /* zinc-50 */
+
+  --highlight: #f43f5e;
+  --destructive: #f43f5e;
+
+  --border: #3f3f46;                /* zinc-700 */
+  --input: #3f3f46;
+  --ring: #6366f1;
+
+  --chart-1: #818cf8;
+  --chart-2: #fb7185;
+  --chart-3: #a1a1aa;
+  --chart-4: #f4f4f5;
+  --chart-5: #3f3f46;
+
+  --sidebar: #09090b;               /* zinc-950 */
+  --sidebar-foreground: #f4f4f5;
+  --sidebar-primary: #6366f1;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #27272a;
+  --sidebar-accent-foreground: #f4f4f5;
+  --sidebar-border: #27272a;
+  --sidebar-ring: #6366f1;
+}
+
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-highlight: var(--highlight);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --font-sans: Inter, ui-sans-serif, system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-width: 320px;
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  @apply bg-background text-foreground;
+  line-height: 1.6;
+}
+
+.drag-scroll-row {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  overscroll-behavior-inline: contain;
+  cursor: grab;
+  touch-action: pan-x pan-y;
+}
+
+.drag-scroll-row::-webkit-scrollbar {
+  display: none;
+}
+
+.sidebar-filter-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.sidebar-filter-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.drag-scroll-row.is-dragging {
+  cursor: grabbing;
+  user-select: none;
+}
+
+.drag-scroll-row.is-dragging a {
+  pointer-events: none;
+}
+
+.details-hero-media iframe#trailer-player-frame,
+.details-hero-media iframe.details-full-movie {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: max(100%, calc(max(420px, min(70vh, 900px)) * 16 / 9)) !important;
+  height: max(100%, calc((100vw - 15rem) * 9 / 16)) !important;
+  max-width: none !important;
+  z-index: 0 !important;
+  transform: translate(-50%, -50%);
+}
+
+.details-hero-media[data-trailer-playing="true"] iframe#trailer-player-frame {
+  pointer-events: none;
+}
+
+@media (pointer: coarse) {
+  .drag-scroll-row,
+  .drag-scroll-row.is-dragging {
+    cursor: auto;
+  }
+}
+
+@media (pointer: coarse), (hover: none) {
+  .watchlist-overlay {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 767px) {
+  .watchlist-overlay {
+    opacity: 1;
+  }
+}
+
+@media (min-width: 640px) {
+  [aria-label="Streaming services"].drag-scroll-row,
+  [aria-label="Streaming services"].drag-scroll-row.is-dragging {
+    cursor: auto;
+  }
+}
+
+@media (min-width: 1024px) {
+  [aria-label="Top 10 titles"].drag-scroll-row,
+  [aria-label="Top 10 titles"].drag-scroll-row.is-dragging {
+    cursor: auto;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.25;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+}

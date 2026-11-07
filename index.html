@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <!-- Favicon -->
+    <link rel="icon" href="watchmeta2.png" sizes="any" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet">
+
+    <!-- Cloudflare Turnstile -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onTurnstileLoad" async defer></script>
+    <script>
+      function onTurnstileLoad() {
+        window._turnstileReady = true;
+        window.dispatchEvent(new Event('turnstile-ready'));
+      }
+    </script>
+
+    <!-- Web App / PWA -->
+    <meta name="theme-color" content="#000000" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="WatchMeta" />
+    <link rel="apple-touch-icon" href="/watchmeta2.png" />
+    <link rel="manifest" href="/manifest.json" />
+
+    <meta name="description" content="Discover trending movies and TV shows, explore cast details, and find where to watch." data-rh="true" />
+    <meta name="keywords" content="movies, TV shows, streaming, watch guide, cast, WatchMeta" />
+    <meta name="author" content="AJCODER" />
+    <link rel="canonical" href="https://watchmeta.site/" data-rh="true" />
+    <meta property="og:site_name" content="WatchMeta" data-rh="true" />
+    <meta property="og:type" content="website" data-rh="true" />
+    <meta property="og:title" content="WatchMeta: Discover Movies &amp; TV Shows" data-rh="true" />
+    <meta property="og:description" content="Discover trending movies and TV shows, explore cast details, and find where to watch." data-rh="true" />
+    <meta property="og:image" content="https://watchmeta.site/watchmeta.png" data-rh="true" />
+    <meta property="og:url" content="https://watchmeta.site/" data-rh="true" />
+
+    <!-- Primary SEO -->
+    <title>WatchMeta — Free Movie &amp; TV Show Streaming | Watch Online</title>
+    <meta name="description"
+      content="WatchMeta is a free streaming platform to watch movies and TV shows online. Discover trending titles, browse by genre, and stream instantly — no sign-up required." />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="keywords"
+      content="watchmeta, WatchMeta, free streaming, watch movies online, watch TV shows online, free movie streaming, trending movies, best TV series, WatchMeta app" />
+    <meta name="author" content="WatchMeta" />
+    <meta name="application-name" content="WatchMeta" />
+    <link rel="canonical" href="https://watchmeta.site/" />
+      
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" data-rh="true" />
+    <meta name="twitter:site" content="@watchmeta" />
+    <meta name="twitter:creator" content="@watchmeta" />
+    <meta name="twitter:title" content="WatchMeta: Discover Movies &amp; TV Shows" data-rh="true" />
+    <meta name="twitter:description" content="WatchMeta is a free streaming platform. Watch movies and TV shows online instantly — no subscription needed." />
+    <meta name="twitter:image" content="https://watchmeta.site/watchmeta-dashboard.png" data-rh="true" />
+    <meta name="twitter:image:alt" content="WatchMeta — Free Movie &amp; TV Show Streaming" />
+    <link rel="watchmeta2" href="/watchmeta2.png" />
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="WatchMeta" />
+    <meta property="og:url" content="https://watchmeta.site/" />
+    <meta property="og:title" content="WatchMeta — Free Movie &amp; TV Show Streaming" />
+    <meta property="og:description" content="WatchMeta is a free streaming platform. Watch movies and TV shows online instantly — no subscription needed." />
+    <meta property="og:image" content="https://watchmeta.site/watchmeta.png" />
+    <meta property="og:image:alt" content="WatchMeta — Free Movie &amp; TV Show Streaming" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- JSON-LD: WebSite schema with Sitelinks Searchbox -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "@id": "https://watchmeta.site/#website",
+        "name": "WatchMeta",
+        "alternateName": ["WatchMeta App", "watchmeta"],
+        "url": "https://watchmeta.site/",
+        "description": "WatchMeta is a free online streaming platform to watch movies and TV shows instantly.",
+        "inLanguage": "en-US",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://watchmeta.site/search?q={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
+      }
+      </script>
+
+    <!-- JSON-LD: Organization (Brand Entity) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": "https://watchmeta.site/#organization",
+        "name": "WatchMeta",
+        "alternateName": "WatchMeta App",
+        "url": "https://watchmeta.site/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://watchmeta.site/watchmeta.svg",
+          "width": 512,
+          "height": 512
+        },
+        "description": "WatchMeta is a free streaming platform where you can watch movies and TV shows online without a subscription.",
+        "sameAs": [
+          "https://watchmeta.site"
+        ]
+      }
+      </script>
+
+    <!-- JSON-LD: WebApplication (Product Entity) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "@id": "https://watchmeta.site/#webapp",
+        "name": "WatchMeta",
+        "alternateName": ["WatchMeta App", "watchmeta streaming"],
+        "url": "https://watchmeta.site/",
+        "applicationCategory": "EntertainmentApplication",
+        "operatingSystem": "Web, Android, iOS",
+        "browserRequirements": "Requires JavaScript",
+        "description": "WatchMeta lets you stream movies and TV shows for free online. Browse thousands of titles by genre and watch instantly — no account required.",
+        "screenshot": "https://watchmeta.site/watchmeta.png",
+        "featureList": "Free streaming, No subscription, Movies, TV Shows, Anime, K-Drama, Search, Genre browsing",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "publisher": {
+          "@id": "https://watchmeta.site/#organization"
+        }
+      }
+      </script>
+
+    <script>
+      (() => {
+        try {
+          const savedTheme = localStorage.getItem('wm_theme')
+          const theme = savedTheme === 'light' || savedTheme === 'dark'
+            ? savedTheme
+            : window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+          document.documentElement.classList.toggle('dark', theme === 'dark')
+        } catch {
+          document.documentElement.classList.toggle(
+            'dark',
+            window.matchMedia('(prefers-color-scheme: dark)').matches,
+          )
+        }
+      })()
+    </script>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-H670PNW2CH"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'G-H670PNW2CH');
+    </script>
+    <!-- <script data-cfasync="false" src="https://aarems.org/1/3e753b3e5649ca35f027eecd0957a4bd"></script> -->
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+    <script data-cfasync="false" src="https://bancadeltempoidea.org/14/1fc08035ed345be7d3a293602619f2b2"></script>
+  </body>
+</html>
