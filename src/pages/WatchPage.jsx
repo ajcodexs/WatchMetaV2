@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { ArrowLeft, ArrowRight, ListVideo, Play } from 'lucide-react'
+import { ArrowLeft, ArrowRight, ListVideo } from 'lucide-react'
 import PillBreadcrumb from '@/components/common/PillBreadcrumb.jsx'
 import WatchlistButton from '@/components/common/WatchlistButton.jsx'
 import SimilarTitles from '@/components/details/SimilarTitles.jsx'
@@ -16,8 +16,11 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import useTMDBQuery from '@/hooks/useTMDBQuery.js'
 import { normalizeDetails, normalizeEpisode, tmdbRequest } from '@/api/tmdb.js'
+import SourcePlayer from '@/components/player/SourcePlayer.jsx'
+import { SOURCES, DEFAULT_SOURCE_NAME } from '@/config/servers.js'
 
 function EpisodePanel({ details, season, currentEpisode, onEpisodeSelect, onSeasonChange }) {
   return (
@@ -67,6 +70,23 @@ export default function WatchPage() {
   const [seasonError, setSeasonError] = useState('')
   const [seasonRetry, setSeasonRetry] = useState(0)
   const [episodesOpen, setEpisodesOpen] = useState(false)
+
+  // Source selection. These hooks must stay above every early return.
+  const [sourceName, setSourceName] = useState(() => {
+    try {
+      return localStorage.getItem('wm_server_pref') || DEFAULT_SOURCE_NAME
+    } catch {
+      return DEFAULT_SOURCE_NAME
+    }
+  })
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('wm_server_pref', sourceName)
+    } catch {
+      // ignore storage errors
+    }
+  }, [sourceName])
 
   const loadDetails = useCallback(async (signal) => {
     if (!mediaType) throw new Error('Not found.')
@@ -148,22 +168,36 @@ export default function WatchPage() {
       <PillBreadcrumb items={breadcrumbItems} />
       <div className="mx-auto grid max-w-[1300px] gap-6 lg:grid-cols-[minmax(0,1fr)_300px]">
         <div className="min-w-0 space-y-5">
-          <div className="relative mx-auto grid aspect-video w-full max-w-[1000px] place-items-center overflow-hidden rounded-xl border border-border bg-card p-6 text-center">
-            <div className="space-y-4">
-              <div aria-hidden="true" className="mx-auto grid size-14 place-items-center rounded-full bg-muted">
-                <Play className="size-6 fill-current" />
-              </div>
-              <p className="max-w-lg text-sm text-muted-foreground">
-                Watch this title through an authorized streaming service available in your region.
-              </p>
-              {justWatchUrl && (
-                <Button asChild>
-                  <a href={justWatchUrl} target="_blank" rel="noreferrer">Find a streaming service</a>
-                </Button>
-              )}
-              {!justWatchUrl && <p className="text-sm text-muted-foreground">Not available in your region yet.</p>}
+          <div className="mx-auto w-full max-w-[1000px] space-y-3">
+            <SourcePlayer
+              type={mediaType}
+              id={id}
+              season={seasonNumber}
+              episode={episodeNumber}
+              sourceName={sourceName}
+            />
+
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <p className="text-sm text-muted-foreground">Now playing: {sourceName}</p>
+              <Select value={sourceName} onValueChange={setSourceName}>
+                <SelectTrigger className="w-[160px]">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {SOURCES.map((source) => (
+                    <SelectItem key={source.name} value={source.name}>{source.name}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
+
+            {justWatchUrl && (
+              <Button asChild variant="outline">
+                <a href={justWatchUrl} target="_blank" rel="noreferrer">Find a streaming service</a>
+              </Button>
+            )}
           </div>
+
           <section className="space-y-3">
             <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">{heading}</h1>
             <div className="flex flex-wrap items-center gap-2">

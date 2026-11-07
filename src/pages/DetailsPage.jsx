@@ -92,9 +92,11 @@ export default function DetailsPage({ type }) {
     return () => controller.abort()
   }, [activeSeason, id, seasonRetry, seasonsKey, type])
 
-  const season = seasonData?.number === activeSeason?.number
-    ? seasonData
-    : { ...activeSeason, episodes: [] }
+  const season = activeSeason
+    ? seasonData?.number === activeSeason.number
+      ? seasonData
+      : { ...activeSeason, episodes: [] }
+    : null
   const tvWatched = watchedEpisodes[id] ?? {}
   const nextEpisode = season?.episodes.find((episode) => !tvWatched[`S${season.number}E${episode.number}`])
     ?? season?.episodes[0]
@@ -144,7 +146,7 @@ export default function DetailsPage({ type }) {
       <HeroDetails
         item={details}
         type={type}
-        seasonNumber={season.number}
+        seasonNumber={season?.number ?? 1}
         episodeNumber={nextEpisode?.number ?? 1}
       />
       <div className="mx-auto max-w-[1100px] space-y-8 px-4 sm:px-6 lg:space-y-12 lg:px-8">
@@ -154,7 +156,7 @@ export default function DetailsPage({ type }) {
           <TrailerSection item={details} />
         </div>
         <WhereToWatch providers={details.providers} />
-        {type === 'tv' && (
+        {type === 'tv' && season && (
           <section className="space-y-5">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <h2 className="text-xl font-semibold sm:text-2xl">Seasons and episodes</h2>
