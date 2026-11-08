@@ -97,19 +97,20 @@ export function LibraryProvider({ children }) {
   const clearWatchlist = useCallback(() => setWatchlist([]), [])
 
   const upsertProgress = useCallback((item) => {
+    const id = Number(item.id)
     setContinueWatching((current) => [
       {
-        id: item.id,
+        id,
         type: item.type,
         title: item.title,
-        posterPath: item.posterPath ?? item.poster,
-        ...(item.type === 'tv' ? { season: item.season, episode: item.episode } : {}),
-        progressSeconds: item.progressSeconds,
-        durationSeconds: item.durationSeconds,
-        server: item.server,
+        posterPath: item.posterPath || '',
+        ...(item.type === 'tv' ? { season: Number(item.season), episode: Number(item.episode) } : {}),
+        progressSeconds: Math.max(0, Number(item.progressSeconds) || 0),
+        durationSeconds: Math.max(0, Number(item.durationSeconds) || 0),
+        server: String(item.server ?? ''),
         updatedAt: new Date().toISOString(),
       },
-      ...current.filter((entry) => !(entry.id === item.id && entry.type === item.type)),
+      ...current.filter((entry) => !(entry.id === id && entry.type === item.type)),
     ])
   }, [])
 

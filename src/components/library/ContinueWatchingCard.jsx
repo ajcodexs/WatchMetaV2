@@ -32,7 +32,9 @@ export default function ContinueWatchingCard({ item, onRemove, className = '' })
           >
             <div className="h-full bg-primary" style={{ width: `${percent}%` }} />
           </div>
-          <p className="text-xs text-muted-foreground">{minutesLeft} min left</p>
+          <p className="text-xs text-muted-foreground">
+            {item.durationSeconds > 0 ? `${minutesLeft} min left` : 'Last opened'}
+          </p>
         </div>
         {onRemove && (
           <Button

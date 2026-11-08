@@ -262,7 +262,7 @@ export default function SearchPage() {
               <TabsTrigger value="all">All</TabsTrigger>
               <TabsTrigger value="movies">Movies</TabsTrigger>
               <TabsTrigger value="tv">TV</TabsTrigger>
-              <TabsTrigger value="people">People</TabsTrigger>
+              {/* <TabsTrigger value="people">People</TabsTrigger> */}
             </TabsList>
           </Tabs>
           {filtersVisible && (

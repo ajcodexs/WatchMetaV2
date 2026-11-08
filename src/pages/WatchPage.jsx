@@ -21,6 +21,7 @@ import useTMDBQuery from '@/hooks/useTMDBQuery.js'
 import { normalizeDetails, normalizeEpisode, tmdbRequest } from '@/api/tmdb.js'
 import SourcePlayer from '@/components/player/SourcePlayer.jsx'
 import { SOURCES, DEFAULT_SOURCE_NAME } from '@/config/servers.js'
+import useWatchProgress from '@/hooks/useWatchProgress.js'
 
 function EpisodePanel({ details, season, currentEpisode, onEpisodeSelect, onSeasonChange }) {
   return (
@@ -126,6 +127,18 @@ export default function WatchPage() {
   const nextEpisode = episodeSequence[currentEpisodeIndex + 1]
   const watchPath = (nextSeason, nextEpisodeNumber) => `/watch/tv/${id}/${nextSeason}/${nextEpisodeNumber}`
   const detailsPath = mediaType ? `/${mediaType}/${id}` : '/'
+  const currentRuntime = mediaType === 'tv' ? currentEpisode?.runtime : details?.runtime
+  useWatchProgress({
+    enabled: Boolean(details) && !loading && !error && (mediaType === 'movie' || Boolean(currentEpisode)),
+    title: details?.title ?? '',
+    posterPath: details?.posterPath ?? '',
+    type: mediaType,
+    id,
+    season: seasonNumber,
+    episode: episodeNumber,
+    server: sourceName,
+    runtimeMinutes: currentRuntime,
+  })
 
   if (loading) {
     return <div className="space-y-6 py-6" role="status"><Skeleton className="aspect-video w-full rounded-xl" /></div>
@@ -240,7 +253,11 @@ export default function WatchPage() {
               </Sheet>
             </div>
           )}
-          <p className="text-xs leading-relaxed text-muted-foreground">Playback progress is unavailable here. This title won’t be added to Continue Watching automatically.</p>
+          <p className="text-xs leading-relaxed text-muted-foreground">
+            {sourceName === 'Server 2'
+              ? 'This title is added to Continue watching. Progress updates when the player reports it.'
+              : 'This title is added to Continue watching. Progress is not tracked on this server.'}
+          </p>
         </div>
         {mediaType === 'tv' && (
           <aside className="hidden min-w-0 space-y-3 lg:block">
