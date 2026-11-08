@@ -1,4 +1,4 @@
-import { Bookmark, Clapperboard, Home, Search, Tv } from 'lucide-react'
+import { Bookmark, Clapperboard, Home, Route, Search, Tv } from 'lucide-react'
 import { NavLink, useLocation, useSearchParams } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
@@ -10,6 +10,7 @@ const navigation = [
   { label: 'TV', to: '/tv', icon: Tv },
   { label: 'Search', to: '/search', icon: Search },
   { label: 'Library', to: '/library', icon: Bookmark },
+  { label: 'Roadmaps', to: '/roadmaps', icon: Route },
 ]
 
 function SidebarFilterSlot() {

@@ -3,6 +3,7 @@ import MediaRow from '@/components/home/MediaRow.jsx'
 import StreamingServices from '@/components/home/StreamingServices.jsx'
 import Top10Today from '@/components/home/Top10Today.jsx'
 import ContinueWatchingRow from '@/components/home/ContinueWatchingRow.jsx'
+import RoadmapsRow from '@/components/home/RoadmapsRow.jsx'
 import { useCallback } from 'react'
 import { useLibrary } from '@/context/LibraryContext.jsx'
 import useTMDBQuery from '@/hooks/useTMDBQuery.js'
@@ -79,6 +80,7 @@ export default function HomePage() {
           shows={data?.topShows ?? []}
           loading={loading}
         />
+        <RoadmapsRow />
         <StreamingServices />
         {!loading && <ContinueWatchingRow items={continueWatching} />}
         <MediaRow title="Trending now" items={data?.trending ?? []} loading={loading} />

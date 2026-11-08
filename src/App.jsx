@@ -17,6 +17,8 @@ const PersonPage = lazy(() => import('./pages/PersonPage.jsx'))
 const LibraryPage = lazy(() => import('./pages/LibraryPage.jsx'))
 const DetailsPage = lazy(() => import('./pages/DetailsPage.jsx'))
 const WatchPage = lazy(() => import('./pages/WatchPage.jsx'))
+const RoadmapsPage = lazy(() => import('./pages/RoadmapsPage.jsx'))
+const RoadmapDetailPage = lazy(() => import('./pages/RoadmapDetailPage.jsx'))
 
 function LoadingPage({ children }) {
   return (
@@ -80,6 +82,8 @@ export default function App() {
         <Route element={<AppLayout />}>
           <Route path="/" element={<HomePage />} />
           <Route path="/library" element={<LoadingPage>library</LoadingPage>} />
+          <Route path="/roadmaps" element={<Suspense fallback={<Card className="my-6 p-6">Loading roadmaps...</Card>}><RoadmapsPage /></Suspense>} />
+          <Route path="/roadmaps/:slug" element={<Suspense fallback={<Card className="my-6 p-6">Loading roadmap...</Card>}><RoadmapDetailPage /></Suspense>} />
           <Route path="/movies" element={<BrowseLayout type="movie" />} />
           <Route path="/tv" element={<BrowseLayout type="tv" />} />
           <Route path="/search" element={<SearchPage />} />
