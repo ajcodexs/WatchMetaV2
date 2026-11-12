@@ -204,11 +204,11 @@ export default function WatchPage() {
               </Select>
             </div>
 
-            {justWatchUrl && (
+            {/* {justWatchUrl && (
               <Button asChild variant="outline">
                 <a href={justWatchUrl} target="_blank" rel="noreferrer">Find a streaming service</a>
               </Button>
-            )}
+            )} */}
           </div>
 
           <section className="space-y-3">

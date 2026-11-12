@@ -61,7 +61,7 @@ export default function DetailsPage({ type }) {
     const raw = await tmdbRequest(`/${type}/${id}`, { append_to_response: append }, { signal })
     return normalizeDetails(raw, type)
   }, [id, type])
-  const { data: details, loading, error, retry } = useTMDBQuery(loadDetails)
+  const { data: details, loading, error, retry } = useTMDBQuery(loadDetails, [loadDetails])
   const activeSeason = details?.seasons.find((entry) => entry.number === seasonNumber) ?? details?.seasons.find((entry) => entry.number > 0)
   const seasonsKey = details?.seasons.map((season) => season.number).join(',') ?? ''
 
@@ -151,11 +151,11 @@ export default function DetailsPage({ type }) {
       />
       <div className="mx-auto max-w-[1100px] space-y-8 px-4 sm:px-6 lg:space-y-12 lg:px-8">
         <CastSection cast={details.cast} director={details.director} writer={details.writer} />
-        <MovieInfo item={details} type={type} />
+        {/* <MovieInfo item={details} type={type} /> */}
         <div className="lg:hidden">
           <TrailerSection item={details} />
         </div>
-        <WhereToWatch providers={details.providers} />
+        {/* <WhereToWatch providers={details.providers} /> */}
         {type === 'tv' && season && (
           <section className="space-y-5">
             <div className="flex flex-wrap items-center justify-between gap-3">

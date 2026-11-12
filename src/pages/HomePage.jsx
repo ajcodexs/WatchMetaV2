@@ -2,10 +2,9 @@ import HeroCarousel from '@/components/home/HeroCarousel.jsx'
 import MediaRow from '@/components/home/MediaRow.jsx'
 import StreamingServices from '@/components/home/StreamingServices.jsx'
 import Top10Today from '@/components/home/Top10Today.jsx'
-import ContinueWatchingRow from '@/components/home/ContinueWatchingRow.jsx'
+import PromoSection from '@/components/PromoSection.jsx'
 import RoadmapsRow from '@/components/home/RoadmapsRow.jsx'
 import { useCallback } from 'react'
-import { useLibrary } from '@/context/LibraryContext.jsx'
 import useTMDBQuery from '@/hooks/useTMDBQuery.js'
 import { normalizeMedia, tmdbRequest } from '@/api/tmdb.js'
 import RequestState from '@/components/common/RequestState.jsx'
@@ -54,7 +53,6 @@ export default function HomePage() {
     }
   }, [])
   const { data, loading, error, retry } = useTMDBQuery(loadHome)
-  const { continueWatching } = useLibrary()
   const searchAction = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
@@ -80,13 +78,13 @@ export default function HomePage() {
           shows={data?.topShows ?? []}
           loading={loading}
         />
-        <RoadmapsRow />
         <StreamingServices />
-        {!loading && <ContinueWatchingRow items={continueWatching} />}
         <MediaRow title="Trending now" items={data?.trending ?? []} loading={loading} />
         <MediaRow title="Recently added" items={data?.recent ?? []} loading={loading} seeAllTo="/movies" />
         <MediaRow title="Popular this week" items={data?.popular ?? []} loading={loading} seeAllTo="/tv" />
+        <RoadmapsRow />
         <MediaRow title="Top rated" items={data?.topRated ?? []} loading={loading} />
+        <PromoSection />
         <AdsterraNative />
       </div>
     </div>
